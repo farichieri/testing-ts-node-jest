@@ -1,6 +1,53 @@
-import { getStringInfo, toUpperCase } from '../app/Utils';
+import { StringUtils, getStringInfo, toUpperCase } from '../app/Utils';
 
+// Jest Hooks
+// Hooks inside describe blocks
 describe('Utils test suite', () => {
+  describe.only('StringUtils tests', () => {
+    let sut: StringUtils;
+
+    beforeEach(() => {
+      sut = new StringUtils();
+    });
+
+    // afterAll(() => {
+    // });
+
+    // it.todo('testing todo');
+
+    it('Should return correct uppercase', () => {
+      const actual = sut.toUpperCase('test');
+      const expected = 'TEST';
+      expect(actual).toBe(expected);
+    });
+
+    it('Should throw error on invalid argument - function', () => {
+      function expectError() {
+        const actual = sut.toUpperCase('');
+        return actual;
+      }
+      expect(expectError).toThrow();
+      expect(expectError).toThrowError('Invalid argument!');
+    });
+
+    it('Should throw error on invalid argument - arrow function', () => {
+      expect(() => {
+        sut.toUpperCase('');
+      }).toThrowError('Invalid argument!');
+    });
+
+    it('Should throw error on invalid argument - try catch block', (done) => {
+      try {
+        sut.toUpperCase('');
+        done('Should throw error');
+      } catch (error) {
+        expect(error).toBeInstanceOf(Error);
+        expect(error).toHaveProperty('message', 'Invalid argument!');
+        done();
+      }
+    });
+  });
+
   // it or test are the same
   it('Should return uppercase', () => {
     // arrange
@@ -12,6 +59,18 @@ describe('Utils test suite', () => {
 
     // assert
     expect(actual).toBe(expected);
+  });
+
+  // Parameterized tests
+  describe('ToUpperCase examples', () => {
+    it.each([
+      { input: 'test', expected: 'TEST' },
+      { input: 'test1', expected: 'TEST1' },
+      { input: 'My-String', expected: 'MY-STRING' },
+    ])('$input toUpperCase should be $expected', ({ input, expected }) => {
+      const actual = toUpperCase(input);
+      expect(actual).toBe(expected);
+    });
   });
 
   describe('getStringInfo for arg test should', () => {
