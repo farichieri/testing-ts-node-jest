@@ -26,7 +26,6 @@ describe('module tests', () => {
 
   test('string with id', () => {
     const result = OtherUtils.toLowerCaseWithId('ABC');
-    console.log(result);
     expect(result).toBe('abc123');
   });
 });

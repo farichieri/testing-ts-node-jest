@@ -90,7 +90,7 @@
 
 - test aliases:
 
-  - it (and test are the ssame)
+  - it (and test are the same)
   - test
   - xit (and it.skip is the same)
   - fit (and it.only is the same)
@@ -136,12 +136,12 @@
 - Fake: simplified working implementation, take a shortcut. (Like a fake login service)
 - Stubs: incomplete objects used as arguments.
 - Spies: track information about how a unit is called.
-- Mocks: preprogramed with expectations.
+- Mocks: pre-programed with expectations.
   (Mocks and spies have a lot in common)
 
 - Why do we need test doubles?
 
-* Some units aren't fast, or easily accessible (like a DB conection)
+* Some units aren't fast, or easily accessible (like a DB connection)
 
   - Replace them in tests
 
@@ -154,7 +154,7 @@
 * Spies vs mocks:
 
 - Spies are not directly injected into SUT
-- Original functionality is preserved with spies (with jest.fn() mock we apply to its own funcionatity)
+- Original functionality is preserved with spies (with jest.fn() mock we apply to its own functionality)
 - Spies usually track method calls.
 
 ## Test doubles in practice
@@ -163,7 +163,7 @@
 - Understand the difference in testing styles,
   - What is a unit?
 
-### Chigago - Small focus on mocks:
+### Chicago - Small focus on mocks:
 
 - A unit: collection of pieces (it's not something very small but there are multiple small pieces working together)
 - Test from a broader view
@@ -173,3 +173,7 @@
 
 - A unit: a class
 - Mock all its dependencies
+
+### Testing - a temperature approach:
+
+- A unit: is a requirement.

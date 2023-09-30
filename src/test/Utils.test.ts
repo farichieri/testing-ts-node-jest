@@ -3,7 +3,7 @@ import { StringUtils, getStringInfo, toUpperCase } from '../app/Utils';
 // Jest Hooks
 // Hooks inside describe blocks
 describe('Utils test suite', () => {
-  describe.only('StringUtils tests', () => {
+  describe('StringUtils tests', () => {
     let sut: StringUtils;
 
     beforeEach(() => {
