@@ -7,20 +7,20 @@ type SomeTypeWithId = {
   color: string;
 };
 
-describe('Database test suite', () => {
+describe('DataBase test suite', () => {
   let sut: DataBase<SomeTypeWithId>;
 
   const fakeId = '1234';
 
-  const someObject = {
+  const someObject1 = {
     id: '',
-    name: 'some name',
+    name: 'someName',
     color: 'blue',
   };
 
-  const someObjectTwo = {
+  const someObject2 = {
     id: '',
-    name: 'some other name',
+    name: 'someOtherName',
     color: 'blue',
   };
 
@@ -29,43 +29,45 @@ describe('Database test suite', () => {
     jest.spyOn(IdGenerator, 'generateRandomId').mockReturnValue(fakeId);
   });
 
-  // Test insert operation
-  it('should insert a new element', async () => {
+  it('should return id after inset', async () => {
     const actual = await sut.insert({
       id: '',
     } as any);
+
     expect(actual).toBe(fakeId);
   });
 
-  it('should get element after insert', async () => {
-    const id = await sut.insert(someObject);
+  it('should get element after inset', async () => {
+    const id = await sut.insert(someObject1);
     const actual = await sut.getBy('id', id);
-    expect(actual).toBe(someObject);
+
+    expect(actual).toBe(someObject1);
   });
 
   it('should find all elements with the same property', async () => {
-    await sut.insert(someObject);
-    await sut.insert(someObjectTwo);
+    await sut.insert(someObject1);
+    await sut.insert(someObject2);
 
-    const expected = [someObject, someObjectTwo];
+    const expected = [someObject1, someObject2];
 
     const actual = await sut.findAllBy('color', 'blue');
+
     expect(actual).toEqual(expected);
   });
 
   it('should change color on object', async () => {
-    const id = await sut.insert(someObject);
+    const id = await sut.insert(someObject1);
     const expectedColor = 'red';
 
     await sut.update(id, 'color', expectedColor);
     const object = await sut.getBy('id', id);
     const actualColor = object.color;
 
-    expect(actualColor).toEqual(expectedColor);
+    expect(actualColor).toBe(expectedColor);
   });
 
   it('should delete object', async () => {
-    const id = await sut.insert(someObject);
+    const id = await sut.insert(someObject1);
     await sut.delete(id);
 
     const actual = await sut.getBy('id', id);
@@ -74,10 +76,9 @@ describe('Database test suite', () => {
   });
 
   it('should get all elements', async () => {
-    await sut.insert(someObject);
-    await sut.insert(someObjectTwo);
-
-    const expected = [someObject, someObjectTwo];
+    await sut.insert(someObject1);
+    await sut.insert(someObject2);
+    const expected = [someObject1, someObject2];
 
     const actual = await sut.getAllElements();
 

@@ -177,3 +177,17 @@
 ### Testing - a temperature approach:
 
 - A unit: is a requirement.
+
+### What are the advantages of a heavy mock testing approach?
+
+- Test classes in isolation.
+- Impose a strict coding style. (eg: too many dependencies make the class hard to test)
+- Once tests are in place, it is easy to create new tests.
+- dfg
+
+### what are the disadvantages of a heavy mock testing approach?
+
+- Tests and implementation are tightly coupled.
+  - Small changes in implementation leads to many changes in tests.
+- Hard to write,
+  - In js/ts we don't have a mock generator library.
