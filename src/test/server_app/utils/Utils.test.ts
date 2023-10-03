@@ -13,19 +13,17 @@ const someObject = {
 
 const someObjectAsString = JSON.stringify(someObject);
 
-describe('getRequestBody test suit', () => {
+describe('getRequestBody test suite', () => {
   it('should return object for valid JSON', async () => {
     requestMock.on.mockImplementation((event, cb) => {
-      if (event === 'data') {
+      if (event == 'data') {
         cb(someObjectAsString);
-      }
-      if (event === 'end') {
+      } else {
         cb();
       }
     });
 
     const actual = await getRequestBody(requestMock as any as IncomingMessage);
-
     expect(actual).toEqual(someObject);
   });
 
@@ -38,21 +36,20 @@ describe('getRequestBody test suit', () => {
       }
     });
 
-    await expect(getRequestBody(requestMock as any)).toThrowError(
-      'Unexpected token a in JSON at position 0'
+    await expect(getRequestBody(requestMock as any)).rejects.toThrow(
+      'Unexpected token \'a\', "a{"name":""... is not valid JSON'
     );
   });
 
   it('should throw error for unexpected error', async () => {
-    const someError = new Error('some error');
+    const someError = new Error('Something went wrong!');
     requestMock.on.mockImplementation((event, cb) => {
-      if (event === 'error') {
+      if (event == 'error') {
         cb(someError);
       }
     });
-
-    await expect(
-      getRequestBody(requestMock as any as IncomingMessage)
-    ).rejects.toThrow(someError.message);
+    await expect(getRequestBody(requestMock as any)).rejects.toThrow(
+      someError.message
+    );
   });
 });
