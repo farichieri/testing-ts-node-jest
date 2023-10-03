@@ -191,3 +191,9 @@
   - Small changes in implementation leads to many changes in tests.
 - Hard to write,
   - In js/ts we don't have a mock generator library.
+
+# Low Mock Tests
+
+- Mock as little as possible.
+- Build wrapper objects that will go around the requests and the responses for our server.
+- We will mock the calls to the db (to make independent to external services like dbs)
