@@ -197,3 +197,18 @@
 - Mock as little as possible.
 - Build wrapper objects that will go around the requests and the responses for our server.
 - We will mock the calls to the db (to make independent to external services like dbs)
+
+# Integration testing
+
+- We test multiple components together.
+- In previous part we considered a route to be a unit.
+- There were still mocked components:
+  - Database
+  - Server
+- Test the system as close as possible to the real deployment.
+- Testing stage - identical to the production stage.
+  - Run it locally or remotely.
+-How we will test our system:
+  - Launch the app
+  - Use is as normal user
+  - Make assertions based on the resources
