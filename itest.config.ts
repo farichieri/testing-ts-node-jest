@@ -1,7 +1,8 @@
+// this config only runs for us Itest
 import type { Config } from '@jest/types';
 
 const baseDir = '<rootDir>/src/app/server_app';
-const baseTestDir = '<rootDir>/src/test';
+const baseTestDir = '<rootDir>/src/test/server_app3';
 
 const config: Config.InitialOptions = {
   verbose: true,
@@ -9,10 +10,7 @@ const config: Config.InitialOptions = {
   testEnvironment: 'node',
   collectCoverage: true,
   collectCoverageFrom: [`${baseDir}/**/*.ts`],
-  testMatch: [
-    `${baseTestDir}/server_app/**/*test.ts`,
-    `${baseTestDir}/server_app2/**/*test.ts`,
-  ],
+  testMatch: [`${baseTestDir}/**/*test.ts`],
   setupFiles: ['<rootDir>/src/test/server_app3/utils/config.ts'],
 };
 

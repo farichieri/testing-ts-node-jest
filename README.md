@@ -208,7 +208,12 @@
 - Test the system as close as possible to the real deployment.
 - Testing stage - identical to the production stage.
   - Run it locally or remotely.
--How we will test our system:
+    -How we will test our system:
   - Launch the app
   - Use is as normal user
   - Make assertions based on the resources
+
+# Snapshot testing
+
+- test large objects
+- test UI components, generated logic (JSON)
